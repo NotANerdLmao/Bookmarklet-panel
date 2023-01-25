@@ -107,7 +107,6 @@ details summary ~ * {
     close.onclick = () => {
         GUI.remove();
         clearInterval(loop);
-        removeEventListener('keypress', toggleHidden)
     }
 
     let minimize = document.createElement('button');
@@ -126,16 +125,21 @@ details summary ~ * {
     minimize.style.fontWeight = 'bolder';
     minimize.style.paddingTop = '7.5px';
     minimize.style.paddingLeft = '17.5px';
-    minimize.innerText = '-';
+    minimize.innerText = "-";
+
     minimize.onclick = () => {
         bodyDiv.hidden = !bodyDiv.hidden;
+        if (bodyDiv.hidden == true) {
+            minimize.innerText = "+";
+        } else {
+            minimize.innerText = "-";
+        }
     }
     let bodyDiv = document.createElement('div');
     let body = document.createElement('div');
     bodyDiv.appendChild(body);
     GUI.appendChild(bodyDiv);
 
-    body.innerHTML = (`<span>(Press E to hide)</span>`);
     body.style.display = 'block';
     body.style.margin = '10px';
     //body.style.background = 'white';
@@ -149,43 +153,4 @@ details summary ~ * {
     footer.style.paddingBottom = '5px';
     footer.innerHTML = (`<span>Have fun :D</span>`);
 
-    
-    var encodeValues = async (e, t) => {
-        let d = window.crypto.getRandomValues(new Uint8Array(12));
-        return window.btoa(Array.from(d).map(e => String.fromCharCode(e)).join("") + Array.from(new Uint8Array(await window.crypto.subtle.encrypt({
-            name: "AES-GCM",
-            iv: d
-        }, await window.crypto.subtle.importKey("raw", await window.crypto.subtle.digest("SHA-256", (new TextEncoder).encode(t)), {
-            name: "AES-GCM"
-        }, !1, ["encrypt"]), (new TextEncoder).encode(JSON.stringify(e))))).map(e => String.fromCharCode(e)).join(""))
-    };
-
-    function reactHandler() {
-        return Object.values(document.querySelector('#app > div > div'))[1].children[1]._owner;
-    }
-
-    let autoAnswer, highlightAnswers, choiceESP, autoPassword, chestESP;
-
-    let global = document.createElement('details');
-    global.innerHTML = (`<summary style="padding: 10px; font-size: 1.5em; font-weight: bolder">Global</summary>`);
-    for (var i = 0; i < Object.keys(cheats.global).length; i++) {
-        let cheat = createButton(Object.keys(cheats.global)[i]);
-        cheat.onclick = cheats.global[Object.keys(cheats.global)[i]];
-        global.appendChild(cheat);
-    }
-    global.open = true;
-    global.style.paddingBottom = '10px';
-    body.appendChild(global);
-
-    function createButton(text) {
-        let button = document.createElement('button');
-        button.classList.add('text');
-        button.innerText = text;
-        return button
-    }
-    
-    function toggleHidden(e) {
-        e.code == 'KeyE' && (GUI.hidden = !GUI.hidden)
-    };
-    addEventListener('keypress', toggleHidden);
 })()
