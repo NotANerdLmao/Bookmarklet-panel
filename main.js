@@ -45,7 +45,6 @@ details summary ~ * {
     const GUI = document.createElement('div');
     GUI.appendChild(style);
     GUI.style.width = '400px';
-    //GUI.style.height = '500px';
     GUI.style.background = 'hsl(0, 0%, 10%)';
     GUI.style.borderRadius = '10px';
     GUI.style.position = 'absolute';
@@ -80,7 +79,7 @@ details summary ~ * {
     let header = document.createElement('div');
     GUI.appendChild(header);
     header.style.width = '100%';
-    header.style.height = '35px';
+    header.style.height = '38px';
     header.style.paddingTop = '2px';
     header.style.fontSize = '1.5rem';
     header.style.textAlign = 'center'
@@ -91,8 +90,8 @@ details summary ~ * {
     let close = document.createElement('button');
     header.appendChild(close);
     close.style.background = 'red';
-    close.style.height = '45px';
-    close.style.width = '45px';
+    close.style.height = '50px';
+    close.style.width = '50px';
     close.style.border = 'none';
     close.style.cursor = 'pointer';
     close.style.position = 'absolute';
@@ -114,8 +113,8 @@ details summary ~ * {
     let minimize = document.createElement('button');
     header.appendChild(minimize);
     minimize.style.background = '#444444';
-    minimize.style.height = '45px';
-    minimize.style.width = '45px';
+    minimize.style.height = '50px';
+    minimize.style.width = '50px';
     minimize.style.border = 'none';
     minimize.style.cursor = 'pointer';
     minimize.style.position = 'absolute';
@@ -125,8 +124,8 @@ details summary ~ * {
     minimize.style.borderRadius = '10px';
     minimize.style.fontFamily = 'sans serif';
     minimize.style.fontWeight = 'bolder';
-    minimize.style.paddingTop = '10px';
-    minimize.style.paddingLeft = '15px';
+    minimize.style.paddingTop = '7.5px';
+    minimize.style.paddingLeft = '17.5px';
     minimize.innerText = '-';
     minimize.onclick = () => {
         bodyDiv.hidden = !bodyDiv.hidden;
