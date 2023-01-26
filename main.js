@@ -114,7 +114,7 @@
     headerhtml.style.fontFamily = "arial"
     headerhtml.style.cursor = "grab";
     headerhtml.style.paddingBottom = "0px";
-    headerhtml.innerHTML = `Bookmarklet panel v0.1`;
+    headerhtml.innerHTML = `Bookmarklet panel v0.2`;
 
     let loop;
 
@@ -143,7 +143,7 @@
             headerhtml.style.paddingLeft = "20px";
         } else {
             minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_less</span>`;
-            headerhtml.innerHTML = `Bookmarklet panel v0.1`;
+            headerhtml.innerHTML = `Bookmarklet panel v0.2`;
             GUI.style.width = "400px";
             header.style.width = "400px"
             headerhtml.style.width = "400px"
