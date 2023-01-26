@@ -106,7 +106,7 @@
     header.style.position = "relative";
     header.style.height = "25px";
     header.style.width = "400px";
-    
+
     let headerhtml = document.createElement("div")
     header.appendChild(headerhtml);
     headerhtml.style.position = "relative";
@@ -121,7 +121,7 @@
     let close = document.createElement("button");
     header.appendChild(close);
     close.classList.add("close");
-    close.innerHTML =  icons + `<span class="material-symbols-outlined">close</span>`;
+    close.innerHTML = icons + `<span class="material-symbols-outlined">close</span>`;
     close.onclick = () => {
         GUI.remove();
         clearInterval(loop);
@@ -161,11 +161,11 @@
     body.style.margin = "0px";
     body.style.paddingTop = "5px"
     body.style.minHeight = "70px";
-    
+
     button1 = createButton()
     button1.innerText = "hide website"
     button1.onclick = () => {
-        function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link');link.type = 'image/x-icon';link.rel = 'shortcut icon';link.href = 'https://ssl.gstatic.com/classroom/favicon.png';document.title = 'Classes';console.log(document.title);document.getElementsByTagName('head')[0].appendChild(link) };gcloak();setInterval(gcloak, 1000);
+        function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link'); link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = 'https://ssl.gstatic.com/classroom/favicon.png'; document.title = 'Classes'; console.log(document.title); document.getElementsByTagName('head')[0].appendChild(link) }; gcloak(); setInterval(gcloak, 1000);
     }
     document.body.append(GUI);
 
@@ -176,7 +176,7 @@
     footer.innerHTML = (`<span>Have fun :D</span>`);
 
     function createButton(button) {
-        button  = document.createElement("button")
+        button = document.createElement("button")
         body.appendChild(button);
         button.classList.add("buttons");
         return button;
