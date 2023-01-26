@@ -1,50 +1,34 @@
-(() => {
-    let n = document.createElement("iframe");
-    document.body.append(n);
-    window.alert = n.contentWindow.alert.bind(window);
-    window.prompt = n.contentWindow.prompt.bind(window);
-    window.confirm = n.contentWindow.confirm.bind(window);
-    n.remove();
-})();
-(() => {
-    let style = document.createElement("style");
-    style.innerHTML = (`
-.buttons {
-    display: flex;
+    var style = document.createElement("style");
+    style.innerText = (`
+.buttons-bookmarkpanel {
     background: #88888888;
-    height: 37.5;
+    height: 37.5px;
     border: none;
     border-Radius: 7.5px;
-    align-Self: start;
-    justify-Self: start;
-    padding-top: 9.375;
+    padding-top: 0px;
     cursor: pointer;
 }
-.buttons:hover {
+.buttons-bookmarkpanel:hover {
     background: #666666;
 }
-.minimize {
+.minimize-bookmarkpanel {
     background: #00dd00;
     height: 25px;
     width: 25px;
-    padding-top: 0;
     border: none;
     cursor: pointer;
     position: absolute;
     top: 0px;
     left: 0px;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    font-family: arial;
-    font-weight: bolder;
-    padding-top: 0.5;
-    padding-left: 0.5;
+    border-radius: 7.5px;
+    padding: 0px;
+    margin: auto;
 }
-.minimize:hover {
+.minimize-bookmarkpanel:hover {
     background: #00ff00;
 }
 
-.close {
+.close-bookmarkpanel {
     background: #dd0000;
     height: 25px;
     width: 25px;
@@ -53,25 +37,21 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    padding-top: 0.5;
-    padding-left: 0.5;
-
-    font-size: 1.5rem;
-    border-radius: 10px;
-    font-family: arial;
-    font-weight: bolder;
+    border-radius: 7.5px;
+    padding: 0px;
+    margin: auto;
 }
-.close:hover {
+.close-bookmarkpanel:hover {
     background: #ff0000;
 }
 `);
-    icons = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />`
+    //alert(HTMLHeadElement.style)
 
     const GUI = document.createElement("div");
     GUI.appendChild(style);
     GUI.style.width = "400px";
     GUI.style.background = "hsl(0, 0%, 10%)";
-    GUI.style.borderRadius = "10px";
+    GUI.style.borderRadius = "7.5px";
     GUI.style.position = "absolute";
     GUI.style.textAlign = "center";
     GUI.style.fontFamily = "arial";
@@ -79,7 +59,7 @@
     GUI.style.overflow = "hidden";
     GUI.style.top = "50px";
     GUI.style.left = "50px";
-
+    GUI.style.zIndex = "9999";
     var pos1 = -100, pos2 = -100, pos3 = -100, pos4 = -100;
     GUI.onmousedown = ((e = window.event) => {
         e.preventDefault();
@@ -107,7 +87,7 @@
     header.style.height = "25px";
     header.style.width = "400px";
 
-    let headerhtml = document.createElement("div")
+    let headerhtml = document.createElement("div");
     header.appendChild(headerhtml);
     headerhtml.style.position = "relative";
     headerhtml.style.fontSize = "1rem";
@@ -120,8 +100,8 @@
 
     let close = document.createElement("button");
     header.appendChild(close);
-    close.classList.add("close");
-    close.innerHTML = icons + `<span class="material-symbols-outlined">close</span>`;
+    close.classList.add("close-bookmarkpanel");
+    close.innerHTML = `<img src="https://raw.githubusercontent.com/google/material-design-icons/master/src/navigation/close/materialicons/24px.svg">`;
     close.onclick = () => {
         GUI.remove();
         clearInterval(loop);
@@ -129,24 +109,24 @@
 
     let minimize = document.createElement("button");
     header.appendChild(minimize);
-    minimize.classList.add("minimize");
-    minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_less</span>`;
+    minimize.classList.add("minimize-bookmarkpanel");
+    minimize.innerHTML = `<img src="https://raw.githubusercontent.com/google/material-design-icons/master/src/navigation/arrow_drop_up/materialicons/24px.svg">`;
     minimize.onclick = () => {
         bodyDiv.hidden = !bodyDiv.hidden;
-        close.hidden = bodyDiv.hidden
+        close.hidden = bodyDiv.hidden;
         if (bodyDiv.hidden == true) {
-            minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_more</span>`;
-            headerhtml.innerHTML = icons + `<span class="material-symbols-outlined">drag_indicator</span>`;
+            minimize.innerHTML = `<img src="https://raw.githubusercontent.com/google/material-design-icons/master/src/navigation/arrow_drop_down/materialicons/24px.svg">`;
+            headerhtml.innerHTML = ``;
             GUI.style.width = "50px";
-            header.style.width = "50px"
-            headerhtml.style.width = "30px"
+            header.style.width = "50px";
+            headerhtml.style.width = "30px";
             headerhtml.style.paddingLeft = "20px";
         } else {
-            minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_less</span>`;
+            minimize.innerHTML = `<img src="https://raw.githubusercontent.com/google/material-design-icons/master/src/navigation/arrow_drop_up/materialicons/24px.svg">`;
             headerhtml.innerHTML = `Bookmarklet panel v0.2`;
             GUI.style.width = "400px";
-            header.style.width = "400px"
-            headerhtml.style.width = "400px"
+            header.style.width = "400px";
+            headerhtml.style.width = "400px";
             headerhtml.style.paddingLeft = "0px";
         }
     }
@@ -162,8 +142,9 @@
     body.style.paddingTop = "5px"
     body.style.minHeight = "70px";
 
-    button1 = createButton()
-    button1.innerText = "hide website"
+    button1 = createButton();
+    button1.innerText = "hide website";
+    button1.title = "Sets icon and name of website to google classroom";
     button1.onclick = () => {
         function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link'); link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = 'https://ssl.gstatic.com/classroom/favicon.png'; document.title = 'Classes'; console.log(document.title); document.getElementsByTagName('head')[0].appendChild(link) }; gcloak(); setInterval(gcloak, 1000);
     }
@@ -176,9 +157,8 @@
     footer.innerHTML = (`<span>Have fun :D</span>`);
 
     function createButton(button) {
-        button = document.createElement("button")
+        button = document.createElement("button");
         body.appendChild(button);
-        button.classList.add("buttons");
+        button.classList.add("buttons-bookmarkpanel");
         return button;
     }
-})()
