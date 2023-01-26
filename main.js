@@ -146,7 +146,7 @@
     button1.innerText = "hide website";
     button1.title = "Sets icon and name of website to google classroom";
     button1.onclick = () => {
-        function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link'); link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = 'https://ssl.gstatic.com/classroom/favicon.png'; document.title = 'Classes'; console.log(document.title); document.getElementsByTagName('head')[0].appendChild(link) }; gcloak(); setInterval(gcloak, 1000);
+        function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link'); link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = 'https://raw.githubusercontent.com/Azboii/Bookmarklet-panel/main/icons/classroom.png?token=GHSAT0AAAAAAB55KIMPMMNKXUQHGRJ7EZRGY6S3MAQ'; document.title = 'Classes'; console.log(document.title); document.getElementsByTagName('head')[0].appendChild(link) }; gcloak(); setInterval(gcloak, 1000);
     }
     document.body.append(GUI);
 
