@@ -25,8 +25,9 @@
 }
 .minimize {
     background: #00dd00;
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 25px;
+    padding-top: 0;
     border: none;
     cursor: pointer;
     position: absolute;
@@ -36,11 +37,35 @@
     border-radius: 10px;
     font-family: arial;
     font-weight: bolder;
+    padding-top: 0.5;
+    padding-left: 0.5;
 }
 .minimize:hover {
     background: #00ff00;
 }
+
+.close {
+    background: #dd0000;
+    height: 25px;
+    width: 25px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding-top: 0.5;
+    padding-left: 0.5;
+
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-family: arial;
+    font-weight: bolder;
+}
+.close:hover {
+    background: #ff0000;
+}
 `);
+    icons = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />`
 
     const GUI = document.createElement("div");
     GUI.appendChild(style);
@@ -78,34 +103,25 @@
 
     let header = document.createElement("div");
     GUI.appendChild(header);
-    header.style.width = "100%";
     header.style.position = "relative";
-    header.style.height = "40px";
-    header.style.paddingTop = "10px";
-    header.style.fontSize = "1.5rem";
-    header.style.textAlign = "center";
-    header.style.verticalalign = "middle";
-    header.style.fontFamily = "arial"
-    header.style.verticalAlign = "middle"
-    header.innerHTML = `Bookmarklet panel <span style="font-size: 0.75rem">v0.1</span>`;
+    header.style.height = "25px";
+    header.style.width = "400px";
+    
+    let headerhtml = document.createElement("div")
+    header.appendChild(headerhtml);
+    headerhtml.style.position = "relative";
+    headerhtml.style.fontSize = "1rem";
+    headerhtml.style.fontFamily = "arial"
+    headerhtml.style.cursor = "grab";
+    headerhtml.style.paddingBottom = "0px";
+    headerhtml.innerHTML = `Bookmarklet panel v0.1`;
 
     let loop;
 
     let close = document.createElement("button");
     header.appendChild(close);
-    close.style.background = "red";
-    close.style.height = "50px";
-    close.style.width = "50px";
-    close.style.border = "none";
-    close.style.cursor = "pointer";
-    close.style.position = "absolute";
-    close.style.top = "0px";
-    close.style.right = "0px";
-    close.style.fontSize = "1.5rem";
-    close.style.borderRadius = "10px";
-    close.style.fontFamily = "arial";
-    close.style.fontWeight = "bolder";
-    close.innerText = "X";
+    close.classList.add("close");
+    close.innerHTML =  icons + `<span class="material-symbols-outlined">close</span>`;
     close.onclick = () => {
         GUI.remove();
         clearInterval(loop);
@@ -113,14 +129,25 @@
 
     let minimize = document.createElement("button");
     header.appendChild(minimize);
-    minimize.classList.add("minimize")
-    minimize.innerText = "-";
+    minimize.classList.add("minimize");
+    minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_less</span>`;
     minimize.onclick = () => {
         bodyDiv.hidden = !bodyDiv.hidden;
+        close.hidden = bodyDiv.hidden
         if (bodyDiv.hidden == true) {
-            minimize.innerText = "+";
+            minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_more</span>`;
+            headerhtml.innerHTML = icons + `<span class="material-symbols-outlined">drag_indicator</span>`;
+            GUI.style.width = "50px";
+            header.style.width = "50px"
+            headerhtml.style.width = "30px"
+            headerhtml.style.paddingLeft = "20px";
         } else {
-            minimize.innerText = "-";
+            minimize.innerHTML = icons + `<span class="material-symbols-outlined">expand_less</span>`;
+            headerhtml.innerHTML = `Bookmarklet panel v0.1`;
+            GUI.style.width = "400px";
+            header.style.width = "400px"
+            headerhtml.style.width = "400px"
+            headerhtml.style.paddingLeft = "0px";
         }
     }
 
@@ -136,9 +163,9 @@
     body.style.minHeight = "70px";
     
     button1 = createButton()
-    button1.innerText = "test button #1"
+    button1.innerText = "hide website"
     button1.onclick = () => {
-        alert("this is a test :D")
+        function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link');link.type = 'image/x-icon';link.rel = 'shortcut icon';link.href = 'https://ssl.gstatic.com/classroom/favicon.png';document.title = 'Classes';console.log(document.title);document.getElementsByTagName('head')[0].appendChild(link) };gcloak();setInterval(gcloak, 1000);
     }
     document.body.append(GUI);
 
