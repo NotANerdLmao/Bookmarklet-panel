@@ -8,6 +8,7 @@ style.innerText = (`
     border-Radius: 7.5px;
     padding-top: 0px;
     cursor: pointer;
+    padding: 2.5px;
 }
 .buttons-bookmarkpanel:hover {
     background: #666666;
@@ -146,10 +147,18 @@ body.style.paddingTop = "5px"
 body.style.minHeight = "70px";
 
 button1 = createButton();
-button1.innerText = "hide website";
+button1.innerText = "Hide website";
 button1.title = "Sets icon and name of website to google classroom";
 button1.onclick = () => {
     var link = document.querySelector("link[rel*='icon']") || document.createElement('link'); link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = 'https://raw.githubusercontent.com/Azboii/Bookmarklet-panel/19c9f87a86bb5728523961478edd415e05979642/icons/classroom.png'; document.title = 'Classes'; console.log(document.title); document.getElementsByTagName('head')[0].appendChild(link);
+}
+document.body.append(GUI);
+
+button2 = createButton();
+button2.innerText = "Auto clicker";
+button2.title = "... It's an auto clicker";
+button2.onclick = () => {
+    var DELAY = 0;var autoClickerStyleElement = document.createElement("style");autoClickerStyleElement.innerHTML="*{cursor: crosshair !important;}";document.body.appendChild(autoClickerStyleElement);function addClicker(e) {if(!e.isTrusted) {return;}if(e.target.classList.contains("auto-clicker-target")) {e.target.classList.remove("auto-clicker-target");} else {e.target.classList.add("auto-clicker-target");}document.body.removeChild(autoClickerStyleElement);document.body.removeEventListener("click", addClicker);e.preventDefault();autoClick(e.target);}function autoClick(element) {if(element.classList.contains("auto-clicker-target")) {element.click();setTimeout(function(){ autoClick(element); }, DELAY);}}document.body.addEventListener("click", addClicker, 0);
 }
 document.body.append(GUI);
 
