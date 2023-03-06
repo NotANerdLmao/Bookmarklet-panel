@@ -154,7 +154,7 @@ button1.onclick = () => {
 }
 document.body.append(GUI);
 
-var editing = false
+let editing = false
 button2 = createButton();
 button2.innerText = "Edit website";
 button2.title = "Let you edit any website you want";
@@ -162,11 +162,11 @@ button2.onclick = () => {
     if (editing == false) {
         document.body.contentEditable = 'true'; 
         document.designMode='on';
-        var editing = true
+        editing = true
     } else {
         document.body.contentEditable = 'false'; 
         document.designMode='off';
-        var editing = false
+        editing = false
     }
 }
 document.body.append(GUI);
